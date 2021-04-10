@@ -41,3 +41,9 @@ const getName = students.map((value) => {
   return value.name;
 });
 console.log('Array Name: ', getName);
+
+const countStudent = students.reduce(
+  (preValue, currentValues) => (currentValues.gender === 'male' ? preValue + 1 : preValue),
+  0
+);
+console.log("male:",countStudent);
