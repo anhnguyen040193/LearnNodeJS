@@ -17,7 +17,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0" />
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+  <li class="nav-item active">
       <a class="nav-link" href="/admin">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>
@@ -372,84 +372,67 @@
                       ID
                     </th>
                     <th>
-                      Avatar
+                      Name
                     </th>
                     <th>
-                      First Name
+                     Image
                     </th>
                     <th>
-                      Last Name
+                      Thumbnail
                     </th>
                     <th>
-                      DOB
+                      ShortDescription
                     </th>
                     <th>
-                      Gender
+                     CategoryId
                     </th>
                     <th>
-                      Country
+                      SalePrice
                     </th>
                     <th>
-                      Phone
+                     OriginalPrice
+                    </th>
+                       <th>
+                      Images
                     </th>
                     <th>
-                      Zipcode
-                    </th>
-                    <th>
-                      UserName
-                    </th>
-                    <th>
-                      Email
-                    </th>
-                    <th>
-                      EmailVerified
-                    </th>
-                    <th>
-                      Role
+                    Thumbnails
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each user}}
+                  {{#each product}}
                     <tr>
                       <td>
-                        {{_id}}
+                          <a href="/admin/products/{{_id}}"> {{_id}}</a>
+                       
                       </td>
                       <td>
-                        {{avatar}}
+                        {{name}}
                       </td>
                       <td>
-                        {{firstName}}
+                        {{image}}
                       </td>
                       <td>
-                        {{lastName}}
+                        {{thumbnail}}
                       </td>
                       <td>
-                        {{dob}}
+                        {{shortDescription}}
                       </td>
                       <td>
-                        {{gender}}
+                        {{categoryId}}
+                      </td>
+                          <td>
+                        {{salePrice}}
                       </td>
                       <td>
-                        {{country}}
+                        {{originalPrice}}
                       </td>
                       <td>
-                        {{phoneNumber}}
+                        {{images}}
                       </td>
                       <td>
-                        {{zipcode}}
-                      </td>
-                      <td>
-                        {{username}}
-                      </td>
-                      <td>
-                        {{email}}
-                      </td>
-                      <td>
-                        {{emailVerified}}
-                      </td>
-                      <td>
-                        {{role}}
+                        {{thumbnails}}
                       </td>
                     </tr>
                   {{/each}}

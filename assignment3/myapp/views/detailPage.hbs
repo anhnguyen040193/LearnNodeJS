@@ -17,11 +17,11 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0" />
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link" href="/admin">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>
-          Admin
+          Dashboard
         </span>
       </a>
     </li>
@@ -31,6 +31,7 @@
     <div class="sidebar-heading">
       Interface
     </div>
+    <!-- Nav Item - Pages Collapse Menu -->
    <li class="nav-item">
       <a class="nav-link" href="/admin/users">
         <i class="far fa-user "></i>
@@ -55,7 +56,6 @@
         </span>
       </a>
     </li>
-  
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
     <!-- Sidebar Toggler (Sidebar) -->
@@ -372,84 +372,66 @@
                       ID
                     </th>
                     <th>
-                      Avatar
+                      Name
                     </th>
                     <th>
-                      First Name
+                      Image
                     </th>
                     <th>
-                      Last Name
+                      Thumbnail
                     </th>
                     <th>
-                      DOB
+                      ShortDescription
                     </th>
                     <th>
-                      Gender
+                      CategoryId
                     </th>
                     <th>
-                      Country
+                      SalePrice
                     </th>
                     <th>
-                      Phone
+                      OriginalPrice
                     </th>
                     <th>
-                      Zipcode
+                      Images
                     </th>
                     <th>
-                      UserName
-                    </th>
-                    <th>
-                      Email
-                    </th>
-                    <th>
-                      EmailVerified
-                    </th>
-                    <th>
-                      Role
+                      Thumbnails
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each user}}
+                  {{#each detailProduct}}
                     <tr>
                       <td>
                         {{_id}}
                       </td>
                       <td>
-                        {{avatar}}
+                        {{name}}
                       </td>
                       <td>
-                        {{firstName}}
+                        {{image}}
                       </td>
                       <td>
-                        {{lastName}}
+                        {{thumbnail}}
                       </td>
                       <td>
-                        {{dob}}
+                        {{shortDescription}}
                       </td>
                       <td>
-                        {{gender}}
+                        {{categoryId}}
                       </td>
                       <td>
-                        {{country}}
+                        {{salePrice}}
                       </td>
                       <td>
-                        {{phoneNumber}}
+                        {{originalPrice}}
                       </td>
                       <td>
-                        {{zipcode}}
+                        {{images}}
                       </td>
                       <td>
-                        {{username}}
-                      </td>
-                      <td>
-                        {{email}}
-                      </td>
-                      <td>
-                        {{emailVerified}}
-                      </td>
-                      <td>
-                        {{role}}
+                        {{thumbnails}}
                       </td>
                     </tr>
                   {{/each}}
