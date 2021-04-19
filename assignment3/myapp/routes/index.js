@@ -2,6 +2,10 @@ const { format } = require('date-fns');
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+
+router.get('/', function (req, res, next) {
+  res.redirect('/admin');
+});
 /* GET home page. */
 router.get('/admin', function (req, res, next) {
   const getUserData = JSON.parse(fs.readFileSync('./mock-data/users.json', 'utf8'));
