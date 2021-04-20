@@ -47,7 +47,10 @@ router.get('/admin/products/:id', function (req, res, next) {
   const getProductData = JSON.parse(fs.readFileSync('./mock-data/product.json', 'utf8'));
   const getDetailProduct = getProductData.body.find((values) => values._id === req.params.id);
   const converArr = [getDetailProduct];
-  res.render('detailPage', { detailProduct: converArr });
+  res.render('detailPage', {
+    detailProduct: converArr,
+    length: converArr.length > 10 ? true : false,
+  });
 });
 
 module.exports = router;

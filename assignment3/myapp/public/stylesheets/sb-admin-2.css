@@ -4494,6 +4494,10 @@ input[type="button"].btn-block {
   min-height: 1px;
   padding: 1.25rem;
 }
+.cardbody .pagination{
+  display: none;
+  background-color: red;
+}
 
 .card-title {
   margin-bottom: 0.75rem;
