@@ -11,6 +11,7 @@
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.12.5",
     "morgan": "~1.9.1",
     "startbootstrap-sb-admin-2": "^4.1.3"
   }
