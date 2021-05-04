@@ -6,8 +6,13 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   User.find({}, function (err, docs) {
+    console.log(docs);
     if (err) return res.json(err);
-    res.send({ message: 'success get all list users', response: docs, totalLength: docs.length });
+    res.send({
+      message: 'success get all list users',
+      response: docs,
+      totalLength: docs.length,
+    });
   });
 });
 
@@ -24,7 +29,11 @@ router.post('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   User.find({ _id: req.body._id }, function (err, docs) {
     if (err) return res.json(err);
-    res.send({ message: 'success get user', response: docs, totalLength: docs.length });
+    res.send({
+      message: 'success get user',
+      response: docs,
+      totalLength: docs.length,
+    });
   });
 });
 
@@ -121,6 +130,28 @@ router.patch('/:id', function (req, res, next) {
       }
     );
   });
+});
+
+router.put('/:id', function (req, res, next) {
+  try {
+    User.replaceOne({ _id: req.body._id }, { firstName: req.body.firstName }, function (err, docs) {
+      if (err) return res.json(err);
+      res.send({ message: 'replace success user', response: docs });
+    });
+  } catch (error) {
+    res.send({ message: 'replace failed', response: error });
+  }
+});
+
+router.delete('/:id', function (req, res, next) {
+  try {
+    User.deleteOne({ _id: req.body._id }, function (err, docs) {
+      if (err) return res.json(err);
+      res.send({ message: 'delete success user', response: docs });
+    });
+  } catch (error) {
+    res.send({ message: 'delete failed', response: error });
+  }
 });
 
 module.exports = router;
