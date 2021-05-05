@@ -17,7 +17,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0" />
     <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+    <li class="nav-item active">
       <a class="nav-link" href="/admin">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>
@@ -31,9 +31,9 @@
     <div class="sidebar-heading">
       Interface
     </div>
-   <li class="nav-item">
+    <li class="nav-item">
       <a class="nav-link" href="/admin/users">
-        <i class="far fa-user "></i>
+        <i class="far fa-user"></i>
         <span>
           User
         </span>
@@ -41,7 +41,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/admin/categories">
-          <i class="fas fa-calendar "></i>
+        <i class="fas fa-calendar"></i>
         <span>
           Category
         </span>
@@ -49,13 +49,12 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/admin/products">
-        <i class="fab fa-product-hunt "></i>
+        <i class="fab fa-product-hunt"></i>
         <span>
           Product
         </span>
       </a>
     </li>
-  
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
     <!-- Sidebar Toggler (Sidebar) -->
@@ -345,17 +344,23 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">
-          Tables
-        </h1>
-        <p class="mb-4">
-          DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the
-          <a target="_blank" href="https://datatables.net">
-            official DataTables documentation
-          </a>
-          .
-        </p>
+        <div
+          style="display: flex;flex-flow: row nowrap;justify-content: space-between;margin-bottom: 10px;"
+        >
+          <h1 class="h3 mb-2 text-gray-800">
+            Tables
+          </h1>
+          <div
+            style="padding: 5px;background-color: #008affcf; border-radius: 5px;box-shadow: 1px 1px 1px #00000024;"
+          >
+            <a
+              href="/admin/products/v/create"
+              style="color: white;font-size: 14px;text-decoration:none;"
+            >
+              Create Product
+            </a>
+          </div>
+        </div>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -375,7 +380,7 @@
                       Name
                     </th>
                     <th>
-                     Image
+                      Image
                     </th>
                     <th>
                       Thumbnail
@@ -384,19 +389,19 @@
                       ShortDescription
                     </th>
                     <th>
-                     CategoryId
+                      CategoryId
                     </th>
                     <th>
                       SalePrice
                     </th>
                     <th>
-                     OriginalPrice
+                      OriginalPrice
                     </th>
-                       <th>
+                    <th>
                       Images
                     </th>
                     <th>
-                    Thumbnails
+                      Thumbnails
                     </th>
                   </tr>
                 </thead>
@@ -404,12 +409,13 @@
                   {{#each product}}
                     <tr>
                       <td>
-                          <a href="/admin/products/{{_id}}"> {{_id}}</a>
+                        <a href="/admin/products/{{_id}}">
+                          {{_id}}
+                        </a>
                       </td>
                       <td>
                         <div style="width: 250px;">
-                        {{name}}
-
+                          {{name}}
                         </div>
                       </td>
                       <td>
@@ -423,8 +429,8 @@
                       </td>
                       <td style="text-align: center;">
                         {{categoryId}}
-                      </td >
-                        <td style="text-align: center;">
+                      </td>
+                      <td style="text-align: center;">
                         {{salePrice}}
                       </td>
                       <td style="text-align: center;">

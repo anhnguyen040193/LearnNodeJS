@@ -345,128 +345,52 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
         <!-- Page Heading -->
-          <div
-          style="display: flex;flex-flow: row nowrap;justify-content: space-between;margin-bottom: 10px;"
-        >
         <h1 class="h3 mb-2 text-gray-800">
-          Product Details
+          Create Product
         </h1>
-          <div
-            onclick="myClickFunction()"
-            style="padding: 5px;background-color: #008affcf;
-            border-radius: 5px;
-            box-shadow: 1px 1px 1px #00000024;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;"
-          >
-              Edit Product
-            </a>
-          </div>
-        </div>
-        <script>
-          const myClickFunction = function() {
-            document.getElementById("name").disabled = false;
-            document.getElementById("shortDescription").disabled = false;
-            document.getElementById("salePrice").disabled = false;
-            document.getElementById("originalPrice").disabled = false;
-            document.getElementById("submit").style.display="block";
-          } 
-        </script>
-        <script>
-          const mySubmit = function() {
-            document.getElementById("id").disabled = false;
-          } 
-        </script>
-         <form action="/api/products/update/" method="POST" onsubmit="mySubmit()">
-        {{#each detailProduct}}
-          <div class="mb-4" >
-            <label style="width: 20%; padding-left: 50px;">
-              ID
-            </label>
-            
-            <input id="id" name="_id" value={{_id}} size="25" disabled size="25"/>
-          </div>
+        <form action="/api/products/add/" method="POST">
           <div class="mb-4">
             <label style="width: 20%; padding-left: 50px;">
               Name
             </label>
-            <input id="name" type="text" value='{{name}}' name='name' disabled size="25"/>
+            <input type="text" name="name" size="25" />
           </div>
-           {{#if image}}
-         <div class="mb-4">
-            <label style="width: 20%; padding-left: 50px;">
-              Image
-            </label>
-            <img src={{image}} alt={{image}} />
-          </div>
-          {{/if}}
-
-            {{#if thumbnail}}
-        <div class="mb-4">
-            <label style="width: 20%; padding-left: 50px;">
-              Thumbnail
-            </label>
-            <img src={{thumbnail}} alt={{thumbnail}} />
-          </div>
-          {{/if}}
-         
-     
           <div class="mb-4">
             <label style="width: 20%; padding-left: 50px;">
               Short Description
             </label>
-            <input  id="shortDescription" name="shortDescription" value='{{shortDescription}}' size="25" disabled />
+            <input name="shortDescription" size="25" />
           </div>
           <div class="mb-4">
             <label style="width: 20%; padding-left: 50px;">
               CategoryId
             </label>
-            <input id="categoryId" name="categoryId"  value='{{categoryId}}' size="25" disabled />
+            <select name="categoryId">
+              <option value="">
+                -- Choose Category --
+              </option>
+              {{#each category}}
+                <option value={{_id}} style="text-align: center;">
+                  {{name}}
+                </option>
+              {{/each}}
+            </select>
           </div>
           <div class="mb-4">
             <label style="width: 20%; padding-left: 50px;">
               SalePrice
             </label>
-            <input id="salePrice" name="salePrice"  value={{salePrice}} size="25" disabled />
+            <input name="salePrice" size="25" />
           </div>
           <div class="mb-4">
             <label style="width: 20%; padding-left: 50px;">
               OriginalPrice
             </label>
-            <input id="originalPrice" name="originalPrice" value={{originalPrice}} size="25" disabled />
+            <input name="originalPrice" size="25" />
           </div>
-            {{#if images}}
-            <div class="mb-4">
-            <label style="width: 20%; padding-left: 50px;">
-              Images
-            </label>
-            <div>
-              {{#each images}}
-                <img src={{this}} alt={{this}} />
-              {{/each}}
-            </div>
-          </div>
-          {{/if}}
-          
-          {{#if thumbnails}}
-            <div class="mb-4">
-              <label style="width: 20%; padding-left: 50px;">
-                Thumbnails
-              </label>
-              <div>
-            
-                {{#each thumbnails}}
-                  <img src={{this}} alt={{this}} />
-                {{/each}}
-              </div>
-            </div>  
-          {{/if}}
-         
-        {{/each}}
-         <input id="submit" type="submit" value="Submit" style="margin-left: 35%;display: none;" />
+          <input type="submit" value="Submit" style="margin-left: 35%;" />
         </form>
-      
+      </div>
       <!-- /.container-fluid -->
     </div>
     <!-- End of Main Content -->

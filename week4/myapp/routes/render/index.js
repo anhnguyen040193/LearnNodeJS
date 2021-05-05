@@ -50,9 +50,16 @@ router.get('/admin/users', function (req, res, next) {
   res.render('user', { user: newData });
 });
 
-router.get('/admin/products', function (req, res, next) {
-  const data = getProductData.body;
-  res.render('product', { product: data });
+router.get('/admin/products', async function (req, res, next) {
+  let data;
+  await Product.find({}, function (err, docs) {
+    console.log(docs);
+    if (err) return res.json(err);
+    return (data = docs);
+  });
+  res.render('product', {
+    product: data,
+  });
 });
 
 router.get('/admin/categories', function (req, res, next) {
@@ -60,13 +67,21 @@ router.get('/admin/categories', function (req, res, next) {
   res.render('category', { category: data });
 });
 
-router.get('/admin/products/:id', function (req, res, next) {
-  const getDetailProduct = getProductData.body.find((values) => values._id === req.params.id);
-  const converArr = [getDetailProduct];
-  res.render('detailPage', {
-    detailProduct: converArr,
-    length: converArr.length > 10 ? true : false,
+router.get('/admin/products/:id', async function (req, res, next) {
+  let data;
+  await Product.find({ _id: req.params.id }, function (err, docs) {
+    console.log(docs);
+    if (err) return res.json(err);
+    return (data = docs);
   });
+  res.render('detailPage', {
+    detailProduct: data,
+  });
+});
+
+router.get('/admin/products/v/create', function (req, res, next) {
+  const data = getCategoryData.body;
+  res.render('createProductPage', { category: data });
 });
 
 module.exports = router;
