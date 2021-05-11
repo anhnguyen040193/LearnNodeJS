@@ -2,9 +2,30 @@ const { format } = require('date-fns');
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+const multer = require('multer');
 const Category = require('../../model/category');
 const Product = require('../../model/product');
 const User = require('../../model/user');
+
+//set storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    if (
+      file.mimetype === 'image/jpg' ||
+      file.mimetype === 'image/jpeg' ||
+      file.mimetype === 'image/png'
+    ) {
+      cb(null, 'public/uploads');
+    } else {
+      cb(new Error('not image'), null);
+    }
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'myImage_' + Date.now() + '.jpg');
+  },
+});
+//
+const upload = multer({ storage, limits: { fileSize: 2000000 } });
 
 const getUserData = JSON.parse(fs.readFileSync('./mock-data/users.json', 'utf8'));
 const getProductData = JSON.parse(fs.readFileSync('./mock-data/product.json', 'utf8'));
@@ -18,19 +39,9 @@ router.get('/admin', async function (req, res, next) {
   let totalProduct;
   let totalCategory;
   let totalUser;
-  await Category.find({}, function (err, docs) {
-    if (err) return res.json(err);
-    return (totalCategory = docs.length);
-  });
-
-  await Product.find({}, function (err, docs) {
-    if (err) return res.json(err);
-    return (totalProduct = docs.length);
-  });
-  await User.find({}, function (err, docs) {
-    if (err) return res.json(err);
-    return (totalUser = docs.length);
-  });
+  totalCategory = (await Category.find({})).length;
+  totalProduct = (await Product.find({})).length;
+  totalUser = (await User.find({})).length;
   res.render('index', {
     totalUser,
     totalProduct,
@@ -82,6 +93,16 @@ router.get('/admin/products/:id', async function (req, res, next) {
 router.get('/admin/products/v/create', function (req, res, next) {
   const data = getCategoryData.body;
   res.render('createProductPage', { category: data });
+});
+
+router.post('/admin/uploadImage', upload.single('my-avatar'), function (req, res, next) {
+  const file = req.file;
+  if (!file) {
+    const error = new Error('Please upload a File');
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.render('index', { msg: 'File uploaded', file: req.file.filename });
 });
 
 module.exports = router;
