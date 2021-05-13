@@ -102,7 +102,7 @@ router.post('/admin/uploadImage', upload.single('my-avatar'), function (req, res
     error.httpStatusCode = 400;
     return next(error);
   }
-  res.render('index', { msg: 'File uploaded', file: req.file.filename });
+  res.render('index', { msg: 'File uploaded', file: `/uploads/${req.file.filename}` });
 });
 
 module.exports = router;
