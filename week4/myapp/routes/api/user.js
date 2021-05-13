@@ -4,15 +4,28 @@ const User = require('../../model/user');
 var router = express.Router();
 
 /* GET users listing. */
+
 router.get('/', function (req, res, next) {
-  User.find({}, function (err, docs) {
-    console.log(docs);
-    if (err) return res.json(err);
+  // User.find({}, function (err, docs) {
+  //   console.log(docs);
+  //   if (err) return res.json(err);
+  //   res.send({
+  //     message: 'success get all list users',
+  //     response: docs,
+  //     totalLength: docs.length,
+  //   });
+  // });
+  User.find({})
+  .limit(20)
+  .then(users => {
     res.send({
       message: 'success get all list users',
-      response: docs,
-      totalLength: docs.length,
+      response: users,
+      totalLength: users.length,
     });
+  })
+  .catch(err => {
+    res.send(err);
   });
 });
 
