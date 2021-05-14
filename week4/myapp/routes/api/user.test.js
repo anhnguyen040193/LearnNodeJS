@@ -8,10 +8,8 @@ let defaultUser = {
 
 beforeAll(() => {
     console.log(defaultUser);
-    console.log('app',app);
     return app.start(3000, 'mongodb://anhnguyen:123@localhost:27017/nodejs-basic?authSource=admin')
     .then(httpserver => {
-        console.log("httpserver",httpserver);
         server = httpserver;
     });
 });
@@ -23,9 +21,10 @@ afterAll(done => {
     }
 });
 
-test('GET /api/users', () => {
-    return request(app)
+test('GET /api/users', async () => {
+     await request(app)
         .get('/api/users')
+        .expect(200)
         .then(res => {
             expect(1).toBe(0);
             expect(res.statusCode).toBe(200);

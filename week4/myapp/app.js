@@ -9,9 +9,11 @@ var usersRouter = require('./routes/api/user');
 
 var productsRouter = require('./routes/api/product');
 const { mongooseData } = require('./mongoose');
+const Mongoose  = require('mongoose');
+const debug = require('debug')('app');
 
 var app = express();
-
+app.log = debug;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -44,7 +46,7 @@ app.use(function (err, req, res, next) {
 
 app.start = (PORT, MONGO_URL) => {
   return new Promise((resolve, reject) => {
-      mongoose
+      Mongoose
           .connect(
               MONGO_URL, { useNewUrlParser: true }
           )
