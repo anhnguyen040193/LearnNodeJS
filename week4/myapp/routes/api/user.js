@@ -2,7 +2,26 @@ var express = require('express');
 const mongoose = require('mongoose');
 const User = require('../../model/user');
 var router = express.Router();
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    if (
+      file.mimetype === 'image/jpg' ||
+      file.mimetype === 'image/jpeg' ||
+      file.mimetype === 'image/png'
+    ) {
+      cb(null, 'public/uploads');
+    } else {
+      cb(new Error('not image'), null);
+    }
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'myImage_' + Date.now() + '.jpg');
+  },
+});
+//
+const upload = multer({ storage, limits: { fileSize: 2000000 } });
 /* GET users listing. */
 
 router.get('/', function (req, res, next) {
@@ -167,4 +186,15 @@ router.delete('/:id', function (req, res, next) {
   }
 });
 
+
+router.post('/uploadImage', upload.single('my-avatar'), function (req, res, next) {
+  const file = req.file;
+  if (!file) {
+    const error = new Error('Please upload a File');
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.send({ msg: 'File uploaded', file: `/uploads/${req.file.filename}`})
+  // res.render('index', { msg: 'File uploaded', file: `/uploads/${req.file.filename}` });
+});
 module.exports = router;

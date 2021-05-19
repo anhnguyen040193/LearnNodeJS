@@ -44,30 +44,30 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.start = (PORT, MONGO_URL) => {
-  return new Promise((resolve, reject) => {
-      Mongoose
-          .connect(
-              MONGO_URL, { useNewUrlParser: true }
-          )
-          .then(() => {
-              debug(MONGO_URL + ' database connect success');
-              console.log(MONGO_URL + ' database connect success');
+// app.start = (PORT, MONGO_URL) => {
+//   return new Promise((resolve, reject) => {
+//       Mongoose
+//           .connect(
+//               MONGO_URL, { useNewUrlParser: true }
+//           )
+//           .then(() => {
+//               debug(MONGO_URL + ' database connect success');
+//               console.log(MONGO_URL + ' database connect success');
 
-              const server = app.listen(PORT, err => {
-                  if (err) {
-                      return reject(err);
-                  }
-                  console.log('App started and listening on port', PORT);
-                  resolve(server);
-              });
-          })
-          .catch(err => {
-              debug('Database connection error:' + err);
-              reject(err);
-          });
-  });
-};
+//               const server = app.listen(PORT, err => {
+//                   if (err) {
+//                       return reject(err);
+//                   }
+//                   console.log('App started and listening on port', PORT);
+//                   resolve(server);
+//               });
+//           })
+//           .catch(err => {
+//               debug('Database connection error:' + err);
+//               reject(err);
+//           });
+//   });
+// };
 //mongoose
 mongooseData;
 module.exports = app;
